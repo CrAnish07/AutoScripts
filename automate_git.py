@@ -3,7 +3,7 @@ import subprocess
 from datetime import datetime
 
 # Configuration
-REPO_PATH = "/path/to/your/local/repo"  # Replace with the path to your Git repo
+REPO_PATH = "D:\AutoCommits"  # Replace with the path to your Git repo
 FILE_NAME = "example.txt"  # File to be created or updated
 COMMIT_MESSAGE = "Automated commit"  # Commit message
 BRANCH_NAME = "main"  # Change if using a different branch
