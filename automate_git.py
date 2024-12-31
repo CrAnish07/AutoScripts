@@ -6,10 +6,10 @@ from datetime import datetime
 REPO_PATH = "D:\AutoCommits"  # Replace with the path to your Git repo
 FILE_NAME = "example.txt"  # File to be created or updated
 COMMIT_MESSAGE = "Automated commit"  # Commit message
-BRANCH_NAME = "main"  # Change if using a different branch
+BRANCH_NAME = "main" 
 
+# Creates or updates the text file with a timestamp.
 def create_or_update_file():
-    """Creates or updates the text file with a timestamp."""
     file_path = os.path.join(REPO_PATH, FILE_NAME)
     timestamp = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     content = f"File updated at {timestamp}\n"
@@ -18,8 +18,8 @@ def create_or_update_file():
         file.write(content)
     print(f"Updated {FILE_NAME} with timestamp: {timestamp}")
 
+# Runs a git command in the repository directory.
 def run_git_command(command):
-    """Runs a git command in the repository directory."""
     try:
         result = subprocess.run(
             command, cwd=REPO_PATH, text=True, check=True, capture_output=True
@@ -30,8 +30,8 @@ def run_git_command(command):
         print(e.stderr)
         raise
 
+# Automates Git commit and push.
 def automate_git_commit_and_push():
-    """Automates Git commit and push."""
     # Stage the changes
     run_git_command(["git", "add", FILE_NAME])
     print(f"Staged changes for {FILE_NAME}")
