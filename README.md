@@ -1,5 +1,5 @@
 # 
-## Run Locally
+## Automating GitHub Commits with Python
 
 Clone the project
 
