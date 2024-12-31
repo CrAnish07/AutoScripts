@@ -6,7 +6,7 @@ from datetime import datetime
 REPO_PATH = "D:\AutoCommits"  
 FILE_NAME = "example.txt"  
 COMMIT_MESSAGE = "Automated commit"  
-BRANCH_NAME = "commit_changes" 
+BRANCH_NAME = "main" 
 
 # Creates or updates the text file with a timestamp.
 def create_or_update_file():
