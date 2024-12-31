@@ -21,9 +21,7 @@ def create_or_update_file():
 # Runs a git command in the repository directory.
 def run_git_command(command):
     try:
-        result = subprocess.run(
-            command, cwd=REPO_PATH, text=True, check=True, capture_output=True
-        )
+        result = subprocess.run(command, cwd=REPO_PATH, text=True, check=True, capture_output=True)
         print(result.stdout)
     except subprocess.CalledProcessError as e:
         print(f"Error running command: {' '.join(command)}")
