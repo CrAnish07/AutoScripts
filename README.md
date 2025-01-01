@@ -9,7 +9,7 @@ Clone the project
 Change the Configuration from automate_git.py
 
  ```bash
-  $ REPO_PATH = "\Replace\your_Git_repo\path"
+    REPO_PATH = "\Replace\your_Git_repo\path"
     FILE_NAME = "example.txt"  # File to be created or updated
     COMMIT_MESSAGE = "Your_Commit_message"
 ```
