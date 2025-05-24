@@ -9,6 +9,15 @@ COMMIT_MESSAGE = "Automated commit"
 BRANCH_NAME = "main" 
 REMOTE_NAME   = "origin"
 
+# Runs a git command in the repository directory.
+def run_git_command(command):
+    try:
+        result = subprocess.run(command, cwd=REPO_PATH, text=True, check=True, capture_output=True)
+        print(result.stdout.strip())
+    except subprocess.CalledProcessError as e:
+        print(f"Error running command: {' '.join(command)}:\n{e.stderr.strip()}")
+        raise
+
 # Creates or updates the text file with a timestamp.
 def create_or_update_file():
     file_path = os.path.join(REPO_PATH, FILE_NAME)
@@ -19,15 +28,6 @@ def create_or_update_file():
         file.write(content)
     print(f"Updated {FILE_NAME} with timestamp: {timestamp}")
 
-# Runs a git command in the repository directory.
-def run_git_command(command):
-    try:
-        result = subprocess.run(command, cwd=REPO_PATH, text=True, check=True, capture_output=True)
-        print(result.stdout.strip())
-    except subprocess.CalledProcessError as e:
-        print(f"Error running command: {' '.join(command)}:\n{e.stderr.strip()}")
-        raise
-
 # Automates Git commit and push.
 def automate_git_commit_and_push():
     # Stage the changes
@@ -35,8 +35,11 @@ def automate_git_commit_and_push():
     print("Fetching & rebasing remote changes…")
     run_git_command(["git", "fetch", REMOTE_NAME, BRANCH_NAME])
     run_git_command(["git", "rebase", f"{REMOTE_NAME}/{BRANCH_NAME}"])
+
+    # 2) Now update the file
+    create_or_update_file()
     
-    # 2) Stage, commit
+    # 3) Stage, commit
     run_git_command(["git", "add", FILE_NAME])
     run_git_command(["git", "commit", "-m", COMMIT_MESSAGE])
     print("Committed changes")
@@ -46,5 +49,4 @@ def automate_git_commit_and_push():
     print("Pushed changes to the remote repository")
 
 if __name__ == "__main__":
-    create_or_update_file()
     automate_git_commit_and_push()
